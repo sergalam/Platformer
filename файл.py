@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 # okno
 screen_W, screen_H = 900, 700
-background = (44, 200, 100)
+background = pygame.transform.scale(pygame.image.load('Background.png'), (screen_W, screen_H))
 screen = pygame.display.set_mode((screen_W, screen_H))
 pygame.display.set_caption('Платформер')
 
@@ -11,6 +11,8 @@ pygame.display.set_caption('Платформер')
 clock = pygame.time.Clock()
 FPS = 60
 
+def load_sprite_sheets(dir, width, height, direction=False):
+    path = join("assets", dir)
 # классы
 class Player(pygame.sprite.Sprite):
     GRAVITY = 1
@@ -47,7 +49,7 @@ player = Player(100, 100, 50, 50)
 # Игровой цикл
 run_game = True
 while run_game:
-    screen.fill(background)
+    screen.blit(background, (0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run_game = False
